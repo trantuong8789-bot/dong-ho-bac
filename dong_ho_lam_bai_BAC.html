@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đồng hồ làm bài BAC</title>
+<style>
+body{margin:0;background:transparent;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:220px}
+.box{width:min(560px,94vw);padding:24px;text-align:center;background:#fff;border:2px solid #222;border-radius:18px;box-shadow:0 5px 18px rgba(0,0,0,.12)}
+h1{margin:0 0 14px;font-size:25px}
+#timer{font-family:"Courier New",monospace;font-size:clamp(48px,12vw,82px);font-weight:bold;letter-spacing:3px;margin:8px 0 20px}
+button{border:0;border-radius:10px;padding:13px 28px;font-size:18px;font-weight:bold;cursor:pointer;margin:4px}
+#start{background:#222;color:#fff} #reset{background:#eee;color:#222}
+#status{margin-top:12px;font-size:15px;color:#555}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>⏱ THỜI GIAN LÀM BÀI</h1>
+<div id="timer">00:00:00</div>
+<button id="start" onclick="startClock()">▶ BẮT ĐẦU</button>
+<button id="reset" onclick="resetClock()">↻ ĐẶT LẠI</button>
+<div id="status">Chưa bắt đầu</div>
+</div>
+<script>
+let seconds=0,timer=null,running=false;
+function formatTime(t){const h=Math.floor(t/3600),m=Math.floor((t%3600)/60),s=t%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
+function update(){document.getElementById('timer').textContent=formatTime(seconds)}
+function startClock(){if(running)return;running=true;document.getElementById('start').textContent='⏱ ĐANG CHẠY';document.getElementById('status').textContent='Đang tính thời gian làm bài...';timer=setInterval(()=>{seconds++;update()},1000)}
+function resetClock(){clearInterval(timer);timer=null;seconds=0;running=false;update();document.getElementById('start').textContent='▶ BẮT ĐẦU';document.getElementById('status').textContent='Chưa bắt đầu'}
+</script>
+</body>
+</html>
