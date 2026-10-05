@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUTO ACADEMY – Bài 01</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fa;color:#1f2937}
+.wrap{max-width:1100px;margin:auto;padding:18px}
+.header,.timer-box,.form-area{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.header{padding:20px;text-align:center;margin-bottom:16px}
+.title{font-size:25px;font-weight:700;margin-bottom:6px}
+.subtitle{font-size:18px;color:#4b5563}
+.timer-box{padding:18px;text-align:center;margin-bottom:16px}
+.label{font-size:15px;color:#6b7280}
+#timer{font-size:38px;font-weight:700;letter-spacing:2px;margin:6px 0 12px;font-variant-numeric:tabular-nums}
+button{border:0;border-radius:9px;padding:12px 24px;font-size:16px;font-weight:700;cursor:pointer;background:#2563eb;color:#fff}
+#status{display:none;font-weight:700;color:#dc2626;margin-top:8px}
+#formArea{display:none}
+iframe{display:block;width:100%;height:1800px;border:0}
+.note{font-size:13px;color:#6b7280;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="title">📝 AUTO ACADEMY – Bài 01</div>
+    <div class="subtitle">ガソリンエンジンの復習問題</div>
+  </div>
+
+  <div class="timer-box">
+    <div class="label">⏱ THỜI GIAN LÀM BÀI</div>
+    <div id="timer">00:00:00</div>
+    <button id="startBtn" onclick="startQuiz()">▶ BẮT ĐẦU LÀM BÀI</button>
+    <div id="status">🔴 ĐANG LÀM BÀI</div>
+    <div class="note">Nhấn nút bắt đầu rồi mới làm bài.</div>
+  </div>
+
+  <div id="formArea" class="form-area">
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSexUhpWD8diER_x2WkHTPug9GGTS8czdM47IF0OQnazjvNFAg/viewform?embedded=true"
+      title="AUTO ACADEMY – Bài 01">
+    </iframe>
+  </div>
+</div>
+
+<script>
+let seconds=0;
+let timerInterval=null;
+
+function formatTime(total){
+  const h=Math.floor(total/3600);
+  const m=Math.floor((total%3600)/60);
+  const s=total%60;
+  return String(h).padStart(2,'0')+':'+
+         String(m).padStart(2,'0')+':'+
+         String(s).padStart(2,'0');
+}
+
+function startQuiz(){
+  if(timerInterval)return;
+
+  localStorage.setItem('bac_bai01_start_time',new Date().toISOString());
+
+  document.getElementById('startBtn').style.display='none';
+  document.getElementById('status').style.display='block';
+  document.getElementById('formArea').style.display='block';
+
+  timerInterval=setInterval(function(){
+    seconds++;
+    document.getElementById('timer').textContent=formatTime(seconds);
+  },1000);
+
+  document.getElementById('formArea').scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+  });
+}
+</script>
+</body>
+</html>
