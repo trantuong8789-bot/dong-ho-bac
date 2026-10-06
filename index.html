@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AUTO ACADEMY - Bai 01</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1f2937;
+}
+
+.container {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.header {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #555;
+}
+
+.timer-box {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.label {
+    font-size: 14px;
+    color: #666;
+}
+
+#timer {
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 10px 0 18px;
+}
+
+#startBtn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 14px 26px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#startBtn:hover {
+    opacity: 0.9;
+}
+
+#status {
+    display: none;
+    margin-top: 12px;
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #777;
+}
+
+#formBox {
+    display: none;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+#formFrame {
+    display: block;
+    width: 100%;
+    height: 1800px;
+    border: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="title">
+            📝 AUTO ACADEMY - Bài 01
+        </div>
+
+        <div class="subtitle">
+            ガソリンエンジンの復習問題
+        </div>
+    </div>
+
+
+    <div class="timer-box">
+
+        <div class="label">
+            ⏱ THỜI GIAN LÀM BÀI
+        </div>
+
+        <div id="timer">
+            00:00:00
+        </div>
+
+        <button id="startBtn">
+            ▶ BẮT ĐẦU LÀM BÀI
+        </button>
+
+        <div id="status">
+            🔴 ĐANG LÀM BÀI
+        </div>
+
+        <div class="note">
+            Nhấn nút bắt đầu để mở đề và bắt đầu tính thời gian.
+        </div>
+
+    </div>
+
+
+    <div id="formBox">
+
+        <iframe
+            id="formFrame"
+            title="AUTO ACADEMY - Bài 01">
+        </iframe>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let seconds = 0;
+let timerInterval = null;
+
+const timer = document.getElementById("timer");
+const startBtn = document.getElementById("startBtn");
+const status = document.getElementById("status");
+const formBox = document.getElementById("formBox");
+const formFrame = document.getElementById("formFrame");
+
+
+function formatTime(totalSeconds) {
+
+    const hours = Math.floor(totalSeconds / 3600);
+
+    const minutes =
+        Math.floor((totalSeconds % 3600) / 60);
+
+    const secs =
+        totalSeconds % 60;
+
+    return String(hours).padStart(2, "0")
+        + ":"
+        + String(minutes).padStart(2, "0")
+        + ":"
+        + String(secs).padStart(2, "0");
+}
+
+
+startBtn.addEventListener("click", function () {
+
+    if (timerInterval !== null) {
+        return;
+    }
+
+    /*
+       Google Form của BAC
+    */
+    formFrame.src =
+        "https://docs.google.com/forms/d/e/1FAIpQLSexUhpWD8diER_x2WkHTPug9GGTS8czdM47IF0OQnazjvNFAg/viewform?embedded=true";
+
+
+    /*
+       Hiện Form
+    */
+    formBox.style.display = "block";
+
+
+    /*
+       Ẩn nút bắt đầu
+    */
+    startBtn.style.display = "none";
+
+
+    /*
+       Hiện trạng thái
+    */
+    status.style.display = "block";
+
+
+    /*
+       Bắt đầu đồng hồ
+    */
+    timerInterval = setInterval(function () {
+
+        seconds++;
+
+        timer.textContent =
+            formatTime(seconds);
+
+    }, 1000);
+
+
+    /*
+       Cuộn xuống Form
+    */
+    setTimeout(function () {
+
+        formBox.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 300);
+
+});
+
+</script>
+
+</body>
+</html>
