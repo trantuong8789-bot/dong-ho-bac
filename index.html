@@ -7,7 +7,6 @@
 <title>AUTO ACADEMY - 復習問題</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -25,8 +24,6 @@ body {
     max-width: 1050px;
     margin: 0 auto;
 }
-
-/* タイトル */
 
 .header {
     background: white;
@@ -46,8 +43,6 @@ body {
     font-size: 18px;
     color: #555;
 }
-
-/* 時計 */
 
 .timer-box {
     background: white;
@@ -69,8 +64,6 @@ body {
     margin: 10px 0 20px;
 }
 
-/* ボタン共通 */
-
 button {
     border: none;
     border-radius: 9px;
@@ -80,8 +73,6 @@ button {
     cursor: pointer;
 }
 
-/* 開始ボタン */
-
 #startBtn {
     background: #2563eb;
     color: white;
@@ -90,8 +81,6 @@ button {
 #startBtn:hover {
     opacity: 0.9;
 }
-
-/* 終了ボタン */
 
 #finishBtn {
     display: none;
@@ -103,8 +92,6 @@ button {
 #finishBtn:hover {
     opacity: 0.9;
 }
-
-/* 状態 */
 
 #status {
     display: none;
@@ -120,8 +107,6 @@ button {
     color: #777;
 }
 
-/* Google Form */
-
 #formBox {
     display: none;
     background: white;
@@ -135,8 +120,6 @@ button {
     height: 1800px;
     border: none;
 }
-
-/* 終了画面 */
 
 #result {
     display: none;
@@ -163,17 +146,12 @@ button {
     color: #555;
     font-size: 16px;
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
-
-
-    <!-- タイトル -->
 
     <div class="header">
 
@@ -187,34 +165,23 @@ button {
 
     </div>
 
-
-    <!-- 時計 -->
-
     <div class="timer-box">
 
         <div class="label">
             ⏱ 試験時間
         </div>
 
-
         <div id="timer">
             00:00:00
         </div>
-
-
-        <!-- 開始ボタン -->
 
         <button id="startBtn">
             ▶ 試験開始
         </button>
 
-
-        <!-- 試験中 -->
-
         <div id="status">
             🔴 試験中
         </div>
-
 
         <div class="note">
             「試験開始」を押すと試験が始まります。
@@ -222,18 +189,12 @@ button {
 
     </div>
 
-
-    <!-- Google Form -->
-
     <div id="formBox">
 
         <iframe
             id="formFrame"
             title="AUTO ACADEMY 復習問題">
         </iframe>
-
-
-        <!-- 終了ボタン -->
 
         <div style="text-align:center; padding:10px 20px 30px;">
 
@@ -245,25 +206,19 @@ button {
 
     </div>
 
-
-    <!-- 終了結果 -->
-
     <div id="result">
 
         <div class="result-title">
             ✅ 試験終了
         </div>
 
-
         <div>
             試験時間
         </div>
 
-
         <div class="final-time" id="finalTime">
             00:00:00
         </div>
-
 
         <div class="finish-note">
             お疲れさまでした。
@@ -271,23 +226,12 @@ button {
 
     </div>
 
-
 </div>
-
 
 <script>
 
-
-/* =========================
-   初期設定
-========================= */
-
 let seconds = 0;
-
 let timerInterval = null;
-
-
-/* HTML要素 */
 
 const timer =
     document.getElementById("timer");
@@ -315,16 +259,12 @@ const finalTime =
 
 
 /* =========================
-   Google Form BÀI 2
+   Google Form BÀI 3
 ========================= */
 
 const FORM_URL =
-"https://docs.google.com/forms/d/e/1FAIpQLSf_C2qS06piP4_7zRyLoR9jN28aADDgJzpLZmMNzGZjxQJOpg/viewform?embedded=true";
+"https://docs.google.com/forms/d/e/1FAIpQLSexUhpWD8diER_x2WkHTPug9GGTS8czdM47IF0OQnazjvNFAg/viewform?embedded=true";
 
-
-/* =========================
-   時間表示
-========================= */
 
 function formatTime(totalSeconds) {
 
@@ -336,7 +276,6 @@ function formatTime(totalSeconds) {
 
     const secs =
         totalSeconds % 60;
-
 
     return (
         String(hours).padStart(2, "0")
@@ -354,40 +293,19 @@ function formatTime(totalSeconds) {
 
 startBtn.addEventListener("click", function() {
 
-
-    /* 二重開始防止 */
-
     if (timerInterval !== null) {
         return;
     }
 
-
-    /* Google Formを読み込む */
-
     formFrame.src = FORM_URL;
-
-
-    /* Formを表示 */
 
     formBox.style.display = "block";
 
-
-    /* 開始ボタンを隠す */
-
     startBtn.style.display = "none";
-
-
-    /* 試験中表示 */
 
     status.style.display = "block";
 
-
-    /* 終了ボタンを表示 */
-
     finishBtn.style.display = "inline-block";
-
-
-    /* 時計スタート */
 
     timerInterval = setInterval(function() {
 
@@ -397,9 +315,6 @@ startBtn.addEventListener("click", function() {
             formatTime(seconds);
 
     }, 1000);
-
-
-    /* Formまでスクロール */
 
     setTimeout(function() {
 
@@ -419,9 +334,6 @@ startBtn.addEventListener("click", function() {
 
 finishBtn.addEventListener("click", function() {
 
-
-    /* 時計停止 */
-
     if (timerInterval !== null) {
 
         clearInterval(timerInterval);
@@ -430,29 +342,14 @@ finishBtn.addEventListener("click", function() {
 
     }
 
-
-    /* 最終時間 */
-
     finalTime.textContent =
         formatTime(seconds);
 
-
-    /* Formを隠す */
-
     formBox.style.display = "none";
-
-
-    /* 試験中表示を隠す */
 
     status.style.display = "none";
 
-
-    /* 終了結果を表示 */
-
     result.style.display = "block";
-
-
-    /* 終了結果へ移動 */
 
     setTimeout(function() {
 
@@ -464,7 +361,6 @@ finishBtn.addEventListener("click", function() {
     }, 300);
 
 });
-
 
 </script>
 
