@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AUTO ACADEMY - Bài 01</title>
+<title>AUTO ACADEMY - 復習問題</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -14,9 +15,9 @@
 body {
     margin: 0;
     padding: 16px;
-    font-family: Arial, sans-serif;
+    font-family: Arial, "Noto Sans JP", sans-serif;
     background: #f4f6f9;
-    color: #1f2937;
+    color: #222;
 }
 
 .container {
@@ -24,6 +25,8 @@ body {
     max-width: 1050px;
     margin: 0 auto;
 }
+
+/* タイトル */
 
 .header {
     background: white;
@@ -34,7 +37,7 @@ body {
 }
 
 .title {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     margin-bottom: 8px;
 }
@@ -44,39 +47,51 @@ body {
     color: #555;
 }
 
+/* 時計 */
+
 .timer-box {
     background: white;
-    padding: 20px;
+    padding: 24px;
     border-radius: 14px;
     text-align: center;
     margin-bottom: 16px;
 }
 
 .label {
-    font-size: 14px;
+    font-size: 15px;
     color: #666;
 }
 
 #timer {
-    font-size: 40px;
+    font-size: 42px;
     font-weight: bold;
     letter-spacing: 2px;
-    margin: 10px 0 18px;
+    margin: 10px 0 20px;
 }
+
+/* ボタン共通 */
 
 button {
     border: none;
     border-radius: 9px;
-    padding: 14px 26px;
-    font-size: 17px;
+    padding: 14px 32px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
 }
+
+/* 開始ボタン */
 
 #startBtn {
     background: #2563eb;
     color: white;
 }
+
+#startBtn:hover {
+    opacity: 0.9;
+}
+
+/* 終了ボタン */
 
 #finishBtn {
     display: none;
@@ -89,18 +104,23 @@ button {
     opacity: 0.9;
 }
 
+/* 状態 */
+
 #status {
     display: none;
     margin-top: 12px;
     color: #dc2626;
+    font-size: 17px;
     font-weight: bold;
 }
 
 .note {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 13px;
     color: #777;
 }
+
+/* Google Form */
 
 #formBox {
     display: none;
@@ -116,89 +136,109 @@ button {
     border: none;
 }
 
+/* 終了画面 */
+
 #result {
     display: none;
     background: white;
     border-radius: 14px;
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     margin-top: 16px;
 }
 
 .result-title {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
 .final-time {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: bold;
     margin: 15px 0;
 }
 
 .finish-note {
     color: #555;
+    font-size: 16px;
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
+
+    <!-- タイトル -->
+
     <div class="header">
+
         <div class="title">
-            📝 AUTO ACADEMY - Bài 01
+            AUTO ACADEMY
         </div>
 
         <div class="subtitle">
             ガソリンエンジンの復習問題
         </div>
+
     </div>
 
 
-    <!-- ĐỒNG HỒ -->
+    <!-- 時計 -->
+
     <div class="timer-box">
 
         <div class="label">
-            ⏱ THỜI GIAN LÀM BÀI
+            ⏱ 試験時間
         </div>
+
 
         <div id="timer">
             00:00:00
         </div>
 
-        <!-- BẮT ĐẦU -->
+
+        <!-- 開始ボタン -->
+
         <button id="startBtn">
-            ▶ BẮT ĐẦU LÀM BÀI
+            ▶ 試験開始
         </button>
 
-        <!-- TRẠNG THÁI -->
+
+        <!-- 試験中 -->
+
         <div id="status">
-            🔴 ĐANG LÀM BÀI
+            🔴 試験中
         </div>
 
+
         <div class="note">
-            Sau khi nộp bài, hãy bấm "KẾT THÚC BÀI" để dừng đồng hồ.
+            「試験開始」を押すと試験が始まります。
         </div>
 
     </div>
 
 
-    <!-- GOOGLE FORM -->
+    <!-- Google Form -->
+
     <div id="formBox">
 
         <iframe
             id="formFrame"
-            title="AUTO ACADEMY - Bài 01">
+            title="AUTO ACADEMY 復習問題">
         </iframe>
 
-        <!-- NÚT KẾT THÚC -->
-        <div style="text-align:center; padding:10px 20px 25px;">
+
+        <!-- 終了ボタン -->
+
+        <div style="text-align:center; padding:10px 20px 30px;">
 
             <button id="finishBtn">
-                ⏹ KẾT THÚC BÀI
+                ⏹ 試験終了
             </button>
 
         </div>
@@ -206,50 +246,86 @@ button {
     </div>
 
 
-    <!-- KẾT QUẢ THỜI GIAN -->
+    <!-- 終了結果 -->
+
     <div id="result">
 
         <div class="result-title">
-            ✅ ĐÃ KẾT THÚC BÀI
+            ✅ 試験終了
         </div>
 
+
         <div>
-            Thời gian làm bài:
+            試験時間
         </div>
+
 
         <div class="final-time" id="finalTime">
             00:00:00
         </div>
 
+
         <div class="finish-note">
-            Bạn đã hoàn thành bài làm.
+            お疲れさまでした。
         </div>
 
     </div>
+
 
 </div>
 
 
 <script>
 
+
+/* =========================
+   初期設定
+========================= */
+
 let seconds = 0;
+
 let timerInterval = null;
 
-const timer = document.getElementById("timer");
-const startBtn = document.getElementById("startBtn");
-const finishBtn = document.getElementById("finishBtn");
-const status = document.getElementById("status");
 
-const formBox = document.getElementById("formBox");
-const formFrame = document.getElementById("formFrame");
+/* HTML要素 */
 
-const result = document.getElementById("result");
-const finalTime = document.getElementById("finalTime");
+const timer =
+    document.getElementById("timer");
+
+const startBtn =
+    document.getElementById("startBtn");
+
+const finishBtn =
+    document.getElementById("finishBtn");
+
+const status =
+    document.getElementById("status");
+
+const formBox =
+    document.getElementById("formBox");
+
+const formFrame =
+    document.getElementById("formFrame");
+
+const result =
+    document.getElementById("result");
+
+const finalTime =
+    document.getElementById("finalTime");
 
 
-/*
-   Định dạng thời gian
-*/
+/* =========================
+   Google Form
+========================= */
+
+const FORM_URL =
+"https://docs.google.com/forms/d/e/1FAIpQLSedexqc4eI8JQ95Yn16CEtntGLGFB4NviX-VOtMo-DQhkcKCw/viewform?embedded=true";
+
+
+/* =========================
+   時間表示
+========================= */
+
 function formatTime(totalSeconds) {
 
     const hours =
@@ -261,58 +337,58 @@ function formatTime(totalSeconds) {
     const secs =
         totalSeconds % 60;
 
-    return String(hours).padStart(2, "0")
+
+    return (
+        String(hours).padStart(2, "0")
         + ":"
         + String(minutes).padStart(2, "0")
         + ":"
-        + String(secs).padStart(2, "0");
+        + String(secs).padStart(2, "0")
+    );
 }
 
 
-/*
-   BẮT ĐẦU LÀM BÀI
-*/
+/* =========================
+   試験開始
+========================= */
+
 startBtn.addEventListener("click", function() {
+
+
+    /* 二重開始防止 */
 
     if (timerInterval !== null) {
         return;
     }
 
 
-    /*
-       Link Google Form
-    */
-    formFrame.src =
-        "https://docs.google.com/forms/d/e/1FAIpQLSexUhpWD8diER_x2WkHTPug9GGTS8czdM47IF0OQnazjvNFAg/viewform?embedded=true";
+    /* Google Formを読み込む */
+
+    formFrame.src = FORM_URL;
 
 
-    /*
-       Hiện Form
-    */
+    /* Formを表示 */
+
     formBox.style.display = "block";
 
 
-    /*
-       Ẩn nút bắt đầu
-    */
+    /* 開始ボタンを隠す */
+
     startBtn.style.display = "none";
 
 
-    /*
-       Hiện trạng thái
-    */
+    /* 試験中表示 */
+
     status.style.display = "block";
 
 
-    /*
-       Hiện nút kết thúc
-    */
+    /* 終了ボタンを表示 */
+
     finishBtn.style.display = "inline-block";
 
 
-    /*
-       Bắt đầu đồng hồ
-    */
+    /* 時計スタート */
+
     timerInterval = setInterval(function() {
 
         seconds++;
@@ -323,9 +399,8 @@ startBtn.addEventListener("click", function() {
     }, 1000);
 
 
-    /*
-       Cuộn xuống Form
-    */
+    /* Formまでスクロール */
+
     setTimeout(function() {
 
         formBox.scrollIntoView({
@@ -333,52 +408,52 @@ startBtn.addEventListener("click", function() {
             block: "start"
         });
 
-    }, 300);
+    }, 500);
 
 });
 
 
-/*
-   KẾT THÚC BÀI
-*/
+/* =========================
+   試験終了
+========================= */
+
 finishBtn.addEventListener("click", function() {
 
-    /*
-       Dừng đồng hồ
-    */
-    clearInterval(timerInterval);
 
-    timerInterval = null;
+    /* 時計停止 */
+
+    if (timerInterval !== null) {
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+
+    }
 
 
-    /*
-       Hiển thị thời gian cuối cùng
-    */
+    /* 最終時間 */
+
     finalTime.textContent =
         formatTime(seconds);
 
 
-    /*
-       Ẩn Form
-    */
+    /* Formを隠す */
+
     formBox.style.display = "none";
 
 
-    /*
-       Ẩn trạng thái đang làm
-    */
+    /* 試験中表示を隠す */
+
     status.style.display = "none";
 
 
-    /*
-       Hiện kết quả
-    */
+    /* 終了結果を表示 */
+
     result.style.display = "block";
 
 
-    /*
-       Cuộn xuống kết quả
-    */
+    /* 終了結果へ移動 */
+
     setTimeout(function() {
 
         result.scrollIntoView({
@@ -386,9 +461,10 @@ finishBtn.addEventListener("click", function() {
             block: "center"
         });
 
-    }, 200);
+    }, 300);
 
 });
+
 
 </script>
 
